@@ -1,4 +1,4 @@
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
   runtime: "edge",
@@ -8,12 +8,8 @@ export default async function handler(req: NextRequest) {
   const response = {
     text: "Hello World!",
     secondText: "Hola mundo!",
+    url: req.url,
   };
 
-  return new Response(JSON.stringify(response), {
-    status: 200,
-    headers: {
-      "content-type": "application/json",
-    },
-  });
+  return NextResponse.json(response);
 }
